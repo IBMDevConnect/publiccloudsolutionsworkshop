@@ -1,2 +1,2 @@
 # publiccloudsolutionsworkshop
-publiccloudsolutionsworkshop
+Public Cloud Solutions Workshop
