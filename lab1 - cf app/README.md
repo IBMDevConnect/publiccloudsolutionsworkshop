@@ -8,7 +8,6 @@ https://ibm.biz/BdqaJE
 
 After successful registration Login into your account. 
 
-
 ## 1. Convert the IBM Cloud Lite account to Trial account
 
 You will be provided with PROMO Code. 
@@ -21,3 +20,5 @@ review this page
      
 You are good to start  Cloud  Foundry Lab!
 
+## 2. Create a Cloud Foundry Application
+https://github.com/IBMDevConnect/cf-nodejs-c2c-demo
