@@ -117,7 +117,7 @@ The last stage of the migration is performed for the specific target environment
 	![Output1](images/007-1-output-iks.png)
 	![Output2](images/007-2-output-iks.png)
 	![Output3](images/007-3-output-iks.png)
-
+NOTE: `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 10-15 minutes, depending on the internet connectivity.
 
 4. Once the migration is completed, depending on the Kubernetes cluster type (Free or Paid cluster), collect the target route as follows (you must do the same thing for each of the other scenarios below):
 
