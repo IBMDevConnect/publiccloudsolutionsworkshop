@@ -22,6 +22,11 @@ The applications are deployed to Cloud Foundry for two purposes:
 
 You should be able to use any application that can be deployed to Cloud Foundry to do these exercises. By running through the steps with the example applications provided here, you will acquire the skills to use the tool with other Cloud Foundry applications.
 
+### Pre-requisites: 
+
+The user should have docker installation on their system.
+Along with that Sign up in `hub.docker.com` and keep your login id handy. 
+
 ## Liberty hello-world application accessed from downloaded `exemplar` sub-directory
 
 In this first example, you migrate an application that runs on WebSphere Liberty in Cloud Foundry. This application has a dependency on several custom user-provided services. The migration task is divided into several stages which are listed below.
@@ -131,14 +136,31 @@ Here, fetch the  `CLUSTER` from the previous lab steps - <https://github.com/IBM
 ![Output3](images/terminal3.png)
 
 
-NOTE: `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 10-15 minutes, depending on the internet connectivity. So wait for it to be completed.
+NOTE:
+* `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 10-15 minutes, depending on the internet connectivity. So wait for it to be completed.
+
+* **Troubleshooting** For the step 6 in the result.html "Login to IBM Cloud" .
+For few users the default command might not work , so kindly try out-
+	`ibmcloud ks cluster config --cluster ${CLUSTER}`
+	
+* Step 7 in the Result.html "Create objects for kubernetes"
+Modify the deploy.yaml with two changes-
+	1) Change it to  `apiVersion: apps/v1`
+	2) Add selector in the yaml file as below-
+```bash
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: smp-hello-world
+```
 
 4. Once the migration is completed, depending on the Kubernetes cluster type (Free or Paid cluster), collect the target route as follows (you must do the same thing for each of the other scenarios below):
 
 	- For free cluster, use the Worker Node public IP and NodePort, run `ibmcloud ks workers --cluster $CLUSTER` and `kubectl get service`
 	- For a paid cluster, the target route should be: `<APPLNAME>.<CLUSTER>.<REGION>.containers.appdomain.cloud`
 
-	Open a browser window to `http://<routehost>/JavaHelloWorldApp`. The result should be similar to the one you had for the application on Cloud Foundry.<br><br>![Sample app OC](images/008a-sampleapp-iks.png)
+	Open a browser window to `http://<PUBLIC_IP>:<NODEPORT>/JavaHelloWorldApp`. The result should be similar to the one you had for the application on Cloud Foundry.<br><br>![Sample app OC](images/008a-sampleapp-iks.png)
 	
 	
 **Congratulations, You have completed the lab for today.**
