@@ -3,9 +3,13 @@
 This exercise describes using the migration tool to migrate each of the following example applications to IBM Kubernetes Service:
 
 Example 1)  Java hello-world application using the `ibm-websphere-liberty` buildpack, and requiring some backend services. The source code is pulled from a local directory.
+
 Example 2) Different Java hello-world application using the `ibm-websphere-liberty` buildpack and no backend services. The source code is pulled from a github repository.
+
 Example 3) Simple Java Spring Boot application using the `java` (Tomcat) buildpack and no backend services. The source code is pulled from a github repository.
+
 Example 4) Simple Node.js hello-world application using the `nodejs` buildpack and no backend services. The source code is pulled from a github repository.
+
 Example 5) Node.js application using the `nodejs` buildpack and requiring a Cloudant database backend service. The source code is pulled from a github repository.
 
 Today we will be doing the first method-
