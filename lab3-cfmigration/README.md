@@ -120,6 +120,8 @@ The last stage of the migration is performed for the specific target environment
 	- Namespace (REPOSPACE). Your namespace (in DockerHub, it is similar to your userID) that you define in the repository.
 	- Kubernetes cluster name (CLUSTER)
 
+Here, `CLUSTER` can be fetched from the previous lab which the user would have executed - <https://github.com/IBMDevConnect/publiccloudsolutionsworkshop/tree/master/lab2%20-%20iks%20creation>
+
 	Note that for login to the IBM Kubernetes Services cluster using the `ibmcloud login` command, you may be asked to get an SSO login token. The commands that are listed in steps 2 and later are using the environment variables that are set above. If you have defined these environment variables, you should be able to run the commands as-is, directly cut-and-pasted from the `result.html` browser page to the bash prompt of the cfmigrationtool container.
 
 	![Output1](images/007-1-output-iks.png)
