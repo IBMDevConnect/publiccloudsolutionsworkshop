@@ -35,6 +35,7 @@ You run these preparation steps only once. There is no need to redo these steps 
 
 		docker run -p 8000:8000 -v <your_local_path>:/data -v /var/run/docker.sock:/var/run/docker.sock -it ibmcloudacademy/cfmigrationtool bash
 
+This step may take 15-20 minutes, depending on the interenet connectivity too. So wait for it to be completed.
 
 2. From the bash shell of the Docker container, clone the repository containing the migration tool and sample application code:
 
@@ -117,7 +118,7 @@ The last stage of the migration is performed for the specific target environment
 	![Output1](images/007-1-output-iks.png)
 	![Output2](images/007-2-output-iks.png)
 	![Output3](images/007-3-output-iks.png)
-NOTE: `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 10-15 minutes, depending on the internet connectivity.
+NOTE: `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 10-15 minutes, depending on the internet connectivity. So wait for it to be completed.
 
 4. Once the migration is completed, depending on the Kubernetes cluster type (Free or Paid cluster), collect the target route as follows (you must do the same thing for each of the other scenarios below):
 
