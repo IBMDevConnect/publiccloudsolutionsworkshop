@@ -2,20 +2,21 @@
 
 This exercise describes using the migration tool to migrate each of the following example applications to IBM Kubernetes Service:
 
-- Java hello-world application using the `ibm-websphere-liberty` buildpack, and requiring some backend services. The source code is pulled from a local directory.
-- Different Java hello-world application using the `ibm-websphere-liberty` buildpack and no backend services. The source code is pulled from a github repository.
-- Simple Java Spring Boot application using the `java` (Tomcat) buildpack and no backend services. The source code is pulled from a github repository.
-- Simple Node.js hello-world application using the `nodejs` buildpack and no backend services. The source code is pulled from a github repository.
-- Node.js application using the `nodejs` buildpack and requiring a Cloudant database backend service. The source code is pulled from a github repository.
+Example 1)  Java hello-world application using the `ibm-websphere-liberty` buildpack, and requiring some backend services. The source code is pulled from a local directory.
+Example 2) Different Java hello-world application using the `ibm-websphere-liberty` buildpack and no backend services. The source code is pulled from a github repository.
+Example 3) Simple Java Spring Boot application using the `java` (Tomcat) buildpack and no backend services. The source code is pulled from a github repository.
+Example 4) Simple Node.js hello-world application using the `nodejs` buildpack and no backend services. The source code is pulled from a github repository.
+Example 5) Node.js application using the `nodejs` buildpack and requiring a Cloudant database backend service. The source code is pulled from a github repository.
 
 Today we will be doing the first method-
 **Java hello-world application using the `ibm-websphere-liberty` buildpack, and requiring some backend services. The source code is pulled from a local directory.**
 
 * The migration tool is run from a Docker container. The migration tool Docker container is provided so you can run the tool without having to install all the prerequisite software on your own system.
 
-In the beginning of the exercise, you deploy the application to a Cloud Foundry platform. The instructions in this exercise use the IBM Cloud Public Cloud Foundry platform for convenience, but the tool is designed to work with Pivotal or any other Cloud Foundry platform.
+In the beginning of the exercise, you deploy the application to a Cloud Foundry platform.
+The instructions in this exercise use the IBM Cloud Public Cloud Foundry platform for convenience, but the tool is designed to work with Pivotal or any other Cloud Foundry platform.
 
-The applications are deployed to Cloud Foundry for two purposes:
+NOTE: The applications are deployed to Cloud Foundry for two purposes:
 
 - To validate that the application **does** actually run in Cloud Foundry
 - To extract the credentials for any backend services used by the application in the VCAP_SERVICES environment variable. As part of the migration, these credentials are used to create a Kubernetes secret, to allow the same backend services to be accessed by the application running on the target Kubernetes platform (OpenShift or IBM Kubernetes Service on IBM Cloud Public).
@@ -24,8 +25,8 @@ You should be able to use any application that can be deployed to Cloud Foundry 
 
 ### Pre-requisites: 
 
-The user should have docker installation on their system.
-Along with that Sign up in `hub.docker.com` and keep your login id handy. 
+1) The user should have docker installation on their system.
+2) Along with that Sign up in `hub.docker.com` and keep your login id saved for future use in this exercise. 
 
 ## Liberty hello-world application accessed from downloaded `exemplar` sub-directory
 
