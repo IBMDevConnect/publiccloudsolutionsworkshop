@@ -124,11 +124,9 @@ Here, fetch the  `CLUSTER` from the previous lab steps - <https://github.com/IBM
 
 	Note that for login to the IBM Kubernetes Services cluster using the `ibmcloud login` command, you may be asked to get an SSO login token. The commands that are listed in steps 2 and later are using the environment variables that are set above. If you have defined these environment variables, you should be able to run the commands as-is, directly cut-and-pasted from the `result.html` browser page to the bash prompt of the cfmigrationtool container.
 
-	![Output1](images/007-1-output-iks.png)
-	![CICD](images/DO6.png)
-	![Output2](images/007-2-output-iks.png)
-	
-	![Output3](images/007-3-output-iks.png)
+	![Output1](.images/terminal1.png)
+	![Output2](.images/terminal2.png)
+	![Output3](.images/terminal3.png)
 NOTE: `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 10-15 minutes, depending on the internet connectivity. So wait for it to be completed.
 
 4. Once the migration is completed, depending on the Kubernetes cluster type (Free or Paid cluster), collect the target route as follows (you must do the same thing for each of the other scenarios below):
