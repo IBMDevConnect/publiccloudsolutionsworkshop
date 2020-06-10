@@ -11,7 +11,7 @@ This exercise describes using the migration tool to migrate each of the followin
 Today we will be doing the first method-
 **Java hello-world application using the `ibm-websphere-liberty` buildpack, and requiring some backend services. The source code is pulled from a local directory.**
 
-The migration tool is run from a Docker container. The migration tool Docker container is provided so you can run the tool without having to install all the prerequisite software on your own system.
+* The migration tool is run from a Docker container. The migration tool Docker container is provided so you can run the tool without having to install all the prerequisite software on your own system.
 
 In the beginning of the exercise, you deploy the application to a Cloud Foundry platform. The instructions in this exercise use the IBM Cloud Public Cloud Foundry platform for convenience, but the tool is designed to work with Pivotal or any other Cloud Foundry platform.
 
