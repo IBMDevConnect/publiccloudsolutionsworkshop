@@ -32,6 +32,8 @@ You should be able to use any application that can be deployed to Cloud Foundry 
 1) The user should have docker installation on their system.
 2) Along with that Sign up in `hub.docker.com` and keep your login id saved for future use in this exercise. 
 
+**Let's get started with the lab** 
+
 ## Liberty hello-world application accessed from downloaded `exemplar` sub-directory
 
 In this first example, you migrate an application that runs on WebSphere Liberty in Cloud Foundry. This application has a dependency on several custom user-provided services. The migration task is divided into several stages which are listed below.
