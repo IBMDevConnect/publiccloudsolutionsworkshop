@@ -135,10 +135,10 @@ NOTE: `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 1
 	Open a browser window to `http://<routehost>/JavaHelloWorldApp`. The result should be similar to the one you had for the application on Cloud Foundry.<br><br>![Sample app OC](images/008a-sampleapp-iks.png)
 	
 	
-**Congratulations, You have completed the lab for today. **
+**Congratulations, You have completed the lab for today.**
+
 
 To explore one more way of appliaction migration, refer to below exercise- 
-
 
 ## Liberty hello-world application accessed from a Git repository
 
