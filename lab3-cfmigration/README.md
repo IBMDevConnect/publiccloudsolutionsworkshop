@@ -69,23 +69,24 @@ As mentioned at the beginning of the exercise, you deploy the application to Clo
 1. Go to the example application code directory:
 
 		cd cf-transformation/exemplar/hello-world
-	![Download code](images/001-docker.png)
+		
+![Download code](images/001-docker.png)
 
 2. Login and deploy the application to Cloud Foundry. For this exercise, we use Cloud Foundry on IBM Cloud Public for convenience. However, you should be able to perform the Cloud Foundry steps on any Cloud Foundry environment. To that end, we will use the generic `cf` commands in these instructions rather than the equivalent `ibmcloud` versions of those commands. The only exception is for the initial login to IBM Cloud Public.
 
-   - You will be prompted for your user id, password, and region for login. This step is only performed if you are using IBM Cloud Public.
+	- You will be prompted for your user id, password, and region for login. This step is only performed if you are using IBM Cloud Public.
 
 			ibmcloud login
 			ibmcloud target --cf
 
-	  ![Login](images/002a-cflogin.png)
+![Login](images/002a-cflogin.png)
 
 	- Take note of the *CF API Endpont* returned by the `ibmcloud target --cf` command. You will need this for your standard Cloud Foundry login. If you are using the US South region, your CF API Endpoint will be `https://api.ng.bluemix.net`.
 	- Login to Cloud Foundry. By logging in to Cloud Foundry, you are able to use the standard `cf` commands, the same commands as you would use for Pivotal or other non-IBM Cloud Foundry platforms. Use the same user id and password.
 
 			cf login
 
-	 ![Login](images/002a-cflogin2.png)
+![Login](images/002a-cflogin2.png)
 
 Go into the folder of your container `/cf-transformation/exemplar/hello-world`
 
