@@ -70,6 +70,8 @@ As mentioned at the beginning of the exercise, you deploy the application to Clo
 
 	 ![Login](images/002a-cflogin2.png)
 
+Go into the folder of your container `/cf-transformation/migrate`
+
 	- Build the application using Maven. Create the User Provided Services ups1, ups2 and ups3. You should substitute your first and last name for the ups1 and ups2 values. The ups3 service value is not displayed by the application but you can populate it with any value.
 	- Substitute your initials for the `jc` in the `cf push` command. Your application name and route must be unique.
 
