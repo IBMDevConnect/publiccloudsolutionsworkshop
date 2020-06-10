@@ -83,10 +83,10 @@ Go into the folder of your container `/cf-transformation/exemplar/hello-world`
 			cf cups ups2 -p '{ "key2": "Cool" }'
 			cf cups ups3 -p '{ "key3": "Sir" }'
 			cf push jc-hello-world -n jc-hello-world
-
-	 ![App push](images/003a-cups.png)
-	 ![App push](images/003a-cfpush.png)
-
+	
+ ![App push](images/003a-cups.png)
+ ![App push](images/003a-cfpush.png)
+ 
 3. Test your application to see whether it is running on Cloud Foundry. Go to the URL `http://jc-hello-world.mybluemix.net`, substituting your initials for `jc`. You should see the following screen, with your name displayed: <br><br> ![Sample app](images/004a-sampleapp.png)
 
 4. Now that the application is running, you should see that it is getting the values for your first and last name from the Custom User Provided Services (cups) you created and populated in the previous commands.
@@ -120,13 +120,17 @@ The last stage of the migration is performed for the specific target environment
 	- Namespace (REPOSPACE). Your namespace (in DockerHub, it is similar to your userID) that you define in the repository.
 	- Kubernetes cluster name (CLUSTER)
 
+
 Here, fetch the  `CLUSTER` from the previous lab steps - <https://github.com/IBMDevConnect/publiccloudsolutionsworkshop/tree/master/lab2%20-%20iks%20creation>
 
 	Note that for login to the IBM Kubernetes Services cluster using the `ibmcloud login` command, you may be asked to get an SSO login token. The commands that are listed in steps 2 and later are using the environment variables that are set above. If you have defined these environment variables, you should be able to run the commands as-is, directly cut-and-pasted from the `result.html` browser page to the bash prompt of the cfmigrationtool container.
+	
+		
+![Output1](images/terminal1.png)
+![Output2](images/terminal2.png)
+![Output3](images/terminal3.png)
 
-	![Output1](images/terminal1.png)
-	![Output2](images/terminal2.png)
-	![Output3](images/terminal3.png)
+
 NOTE: `docker push ${REPOHOST}/${REPOSPACE}/smp-hello-world` takes time around 10-15 minutes, depending on the internet connectivity. So wait for it to be completed.
 
 4. Once the migration is completed, depending on the Kubernetes cluster type (Free or Paid cluster), collect the target route as follows (you must do the same thing for each of the other scenarios below):
