@@ -81,8 +81,8 @@ As mentioned at the beginning of the exercise, you deploy the application to Clo
 
 ![Login](images/002a-cflogin.png)
 
-	- Take note of the *CF API Endpont* returned by the `ibmcloud target --cf` command. You will need this for your standard Cloud Foundry login. If you are using the US South region, your CF API Endpoint will be `https://api.ng.bluemix.net`.
-	- Login to Cloud Foundry. By logging in to Cloud Foundry, you are able to use the standard `cf` commands, the same commands as you would use for Pivotal or other non-IBM Cloud Foundry platforms. Use the same user id and password.
+`- Take note of the *CF API Endpont* returned by the `ibmcloud target --cf` command. You will need this for your standard Cloud Foundry login. If you are using the US South region, your CF API Endpoint will be `https://api.ng.bluemix.net`.
+- Login to Cloud Foundry. By logging in to Cloud Foundry, you are able to use the standard `cf` commands, the same commands as you would use for Pivotal or other non-IBM Cloud Foundry platforms. Use the same user id and password.`
 
 			cf login
 
@@ -90,8 +90,8 @@ As mentioned at the beginning of the exercise, you deploy the application to Clo
 
 Go into the folder of your container `/cf-transformation/exemplar/hello-world`
 
-	- Build the application using Maven. Create the User Provided Services ups1, ups2 and ups3. You should substitute your first and last name for the ups1 and ups2 values. The ups3 service value is not displayed by the application but you can populate it with any value.
-	- Substitute your initials for the `jc` in the `cf push` command. Your application name and route must be unique.
+`- Build the application using Maven. Create the User Provided Services ups1, ups2 and ups3. You should substitute your first and last name for the ups1 and ups2 values. The ups3 service value is not displayed by the application but you can populate it with any value.
+- Substitute your initials for the `jc` in the `cf push` command. Your application name and route must be unique.`
 
 			mvn clean install
 			cf cups ups1 -p '{ "key1": "Joe " }'
