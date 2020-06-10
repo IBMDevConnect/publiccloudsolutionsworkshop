@@ -138,7 +138,7 @@ The last stage of the migration is performed for the specific target environment
 
 Here, fetch the  `CLUSTER` from the previous lab steps - <https://github.com/IBMDevConnect/publiccloudsolutionsworkshop/tree/master/lab2%20-%20iks%20creation>
 
-	Note that for login to the IBM Kubernetes Services cluster using the `ibmcloud login` command, you may be asked to get an SSO login token. The commands that are listed in steps 2 and later are using the environment variables that are set above. If you have defined these environment variables, you should be able to run the commands as-is, directly cut-and-pasted from the `result.html` browser page to the bash prompt of the cfmigrationtool container.
+Note : For login to the IBM Kubernetes Services cluster using the `ibmcloud login` command, you may be asked to get an SSO login token. The commands that are listed in steps 2 and later are using the environment variables that are set above. If you have defined these environment variables, you should be able to run the commands as-is, directly cut-and-pasted from the `result.html` browser page to the bash prompt of the cfmigrationtool container.
 	
 		
 ![Output1](images/terminal1.png)
