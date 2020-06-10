@@ -42,13 +42,15 @@ In this first example, you migrate an application that runs on WebSphere Liberty
 - Testing the application on Cloud Foundry
 - Running the migration tool and deploying the application to IBM Kubernetes Service
 
-### Preparing the migration environment
+### Step 1 : Preparing the migration environment
 
 You run these preparation steps only once. There is no need to redo these steps for subsequent lab exercises:
 
 1. Run the provided Docker container. You should have Docker installed and running on your system. Specify an empty local directory path to be used as the conversion working directory. The following command connects you to a bash shell inside the migration tool container.
 
-		docker run -p 8000:8000 -v <your_local_path>:/data -v /var/run/docker.sock:/var/run/docker.sock -it ibmcloudacademy/cfmigrationtool bash
+```bash
+docker run -p 8000:8000 -v <your_local_path>:/data -v /var/run/docker.sock:/var/run/docker.sock -it ibmcloudacademy/cfmigrationtool
+```
 
 ![docker pull logs](images/docker_run.png)
 
@@ -60,7 +62,7 @@ This step may take 15-20 minutes, depending on the interenet connectivity too. S
 
 	The result is that you have a `/cf-transformation` directory that contains the conversion code.
 
-### Testing the application on the Cloud Foundry environment
+### Step 2 : Testing the application on the Cloud Foundry environment
 
 As mentioned at the beginning of the exercise, you deploy the application to Cloud Foundry. This stage verifies that the application actually runs and allows you to collect the VCAP_SERVICES environment variable contents for the application's backend services.
 
@@ -114,7 +116,7 @@ Go into the folder of your container `/cf-transformation/exemplar/hello-world`
 
    The output should be similar to the following:<br><br>![Command output](images/005-vcapjson.png)
 
-### Running the migration tool and deploying the application to IBM Kubernetes Service
+### Step 3 : Running the migration tool and deploying the application to IBM Kubernetes Service
 
 The last stage of the migration is performed for the specific target environment.
 
