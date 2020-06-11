@@ -85,5 +85,19 @@ Check pod installtion by using command ``` kubectl get pods```
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
 
-     
-     
+    
+### Launch the LogDNA web UI from where you can monitor and manage your logs
+Go to Observability->Logging
+<img src="./Images/gobacktologdna.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+
+
+Click on View LogDNA 
+Note : for Logs , execute this command on kubernetes web terminal. This app will keep adding logs 
+```kubectl run random-logger --image=chentex/random-logger --generator=run-pod/v1```
+<img src="./Images/logdnaconsole.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+
+
