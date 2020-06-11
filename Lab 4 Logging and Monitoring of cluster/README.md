@@ -148,7 +148,30 @@ Find your instance and click View Sysdig.
 First time: Because you already installed the Sysdig agent, you can skip through the installation wizard, get started, and complete the onboarding.
 
 Subsequent times: The Explore view opens.
+
  
- 
+  <img src="./Images/sysdig1.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+     
+   Click Next
+     
+   <img src="./Images/sysdig2.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+     
+   You can skip as we have already installed agent 
+   <img src="./Images/sysdig3.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+     
+   <img src="./Images/sysdig4.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+     
+  Check the dashabor
+  <img src="./Images/sysdig5.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
  
  
