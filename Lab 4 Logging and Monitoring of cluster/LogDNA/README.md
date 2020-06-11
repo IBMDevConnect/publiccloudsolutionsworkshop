@@ -34,5 +34,56 @@ Add IBM Cloud Log Analysis using LogDNA access . and add Adminitrator permission
      
 ### Provision the IBM Log Analysis with LogDNA service
 
+From Bavigation->observability, Select LogDNA and create an instance for IBM Log Analysis with
+Click IBM Log Analysis with LogDNA. 
+ <img src="./Images/CreateLogDNAinstance.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+     
+Select Create instance.
+
+Enter a name for the service instance and a location.
+
+Select the resource group that your cluster is in. By default, the Default resource group is set for you.
+
+Choose a service plan for your service instance. By default, the Lite plan is selected for you. For more information about other service plans, see Pricing plans.
+
+<img src="./Images/LogDNA2.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+     
+ <img src="./Images/LogDNA3Instancecreated.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+     
+#### Get Ingestion keys
+Edit Log Sources. This will give you commands to be executed on kubernetes cluster. Copy both the commands and keep it on notepad to be used lated
+ <img src="./Images/copycommands.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+
+
+### Configure a Kubernetes cluster so that you can monitor its logs by using LogDNA
+Go to Navigation ->Kubernetes -> open web terminal
+
+ <img src="./Images/clustermycluster.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+
+
+type the commands you have copied in previous step
+
+<img src="./Images/clustermycluster.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+
+
+
+Check pod installtion by using command ``` kubectl get pods```
+
+<img src="./Images/terminal.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
+
      
      
