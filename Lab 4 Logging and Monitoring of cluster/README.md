@@ -5,13 +5,13 @@ The following diagram shows the components overview for the IBM Cloud Monitoring
 ![alt text](https://github.com/shiprajain14/IBm-Cloud-Monitoring-Sysdig/blob/master/Images/monitoring_ov.png)
 
 
-## Objectives
-<br>The different sections in this part of the lab will show you how to:</br>
-<br>Provision the IBM Cloud Monitoring with Sysdig service.</br>
-<br>Configure a Kubernetes cluster so that you can monitor its health and performance by using the IBM Cloud Monitoring with . Sysdig service.</br>
-<br>Launch the Sysdig web UI from where you can monitor and manage your environments.</br>
-<br>Monitor an application that is running in a cluster.</br>
-<br>Define an alert to notify you about errors.</br>
+### Objectives
+- The different sections in this part of the lab will show you how to:
+- Provision the IBM Cloud Monitoring with Sysdig service.
+- Configure a Kubernetes cluster so that you can monitor its health and performance by using    the IBM Cloud Monitoring with . Sysdig service.
+- Launch the Sysdig web UI from where you can monitor and manage your environments.
+- Monitor an application that is running in a cluster.
+- Define an alert to notify you about errors.
 
 ## Pre-Requisites
 <br>IBM Cloud Account.</br>
