@@ -38,9 +38,7 @@ Select Access group from left hand side menu and click create
 
 
 Enter the name of the access group: sysdig-admins
-<img src="./Images/SysdigAdmins.png"
-     alt="Markdown Monster icon"
-     style="float: left; margin-right: 10px;" /
+
 
 
 Once the group is created , you will land on add user page. Click on add user and select your user to add it on Access group we have created.
@@ -86,18 +84,19 @@ From navigation menu , go to Obsevability and Click on Monitoring
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
 
-    <img src="./Images/selectsysdigmonitoring.png"
+   <img src="./Images/selectsysdigmonitoring.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
- 
-	 Provide a service name 
-	##### Please make sure the region is same as your kubernetes cluster region and click on create. Enable service monitoring at the bottom 
+
+Provide a service name 
+
+##### Please make sure the region is same as your kubernetes cluster region and click on create. Enable service monitoring at the bottom 
    <img src="./Images/EnableMetrics.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
  
  
-    <img src="./Images/Instanceandkeyprovisioned.png"
+  <img src="./Images/Instanceandkeyprovisioned.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
  
