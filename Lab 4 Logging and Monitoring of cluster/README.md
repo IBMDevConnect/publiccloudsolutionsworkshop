@@ -60,9 +60,10 @@ Select IAM service, and in what type of access do you want , select ibmcloud mon
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
 
-<img src="./Images/addandassignaccess.png" width="48" />
+<img src="./Images/addandassignaccess.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
 
-![assignaccess](Images/addandassignaccess.png)
 
 
 ![alt text](https://github.com/shiprajain14/IBm-Cloud-Monitoring-Sysdig/blob/master/Images/addandassignaccess.png)
