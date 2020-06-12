@@ -13,10 +13,10 @@ The following diagram shows the components overview for the IBM Cloud Monitoring
 - Monitor an application that is running in a cluster.
 - Define an alert to notify you about errors.
 
-## Pre-Requisites
-<br>IBM Cloud Account.</br>
-<br>IBM Cloud CLI installtion : - curl -sL https://ibm.biz/idt-installer | bash.</br>
-<br>IBM Cloud Kubernetes cluster previsioned.</br>
+###  Pre-Requisites
+- IBM Cloud Account.
+- IBM Cloud CLI installtion : - curl -sL https://ibm.biz/idt-installer | bash.
+- IBM Cloud Kubernetes cluster previsioned.
 
 ### 1. Provision the IBM Cloud Monitoring with Sysdig service
 Before creating the Sysdig Service , we need to define user and groups which will have access to sysdig dashboard
@@ -41,7 +41,7 @@ Enter the name of the access group: sysdig-admins
 
 
 
-Once the group is created , you will land on add user page. Click on add user and select your user to add it on Access group we have created.
+Once the group is created , you will land on add user page. Click on add user and select your user to add it on Access group we have crea   ted.
 <img src="./Images/adduser.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
@@ -60,9 +60,7 @@ Select IAM service, and in what type of access do you want , select ibmcloud mon
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
 
-<img src="./Images/addandassignaccess.png"
-     alt="Markdown Monster icon"
-     style="float: left; margin-right: 10px;" />
+<img src="./Images/addandassignaccess.png" width="48" />
 
 
 ![alt text](https://github.com/shiprajain14/IBm-Cloud-Monitoring-Sysdig/blob/master/Images/addandassignaccess.png)
