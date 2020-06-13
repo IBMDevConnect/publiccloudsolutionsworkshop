@@ -3,11 +3,18 @@
 ## Objective
 1. Deploy an application on Kubernetes
 2. Scale and Update Deployments
+3. Setting up Autoscaler (HPA)
 
 ## Pre-requisite
-IBM Cloud Account
-kubernetes cluster Provisioned
-Good to have IBM Cloud CLI installtion
+1. IBM Cloud Account
+2. kubernetes cluster Provisioned
+3. Good to have IBM Cloud CLI installtion
+4. Hey for generating load (Optional for testing load from outside )
+Installation
+Linux 64-bit: https://storage.googleapis.com/hey-release/hey_linux_amd64
+Mac 64-bit: https://storage.googleapis.com/hey-release/hey_darwin_amd64
+Windows 64-bit: https://storage.googleapis.com/hey-release/hey_windows_amd64
+
 
 ### Deploy an application on Kubernetes
 
@@ -42,7 +49,7 @@ guestbook-87b756bd5-5dxsr         1/1     Running   0          112m
 Once the status reads Running, we need to expose that deployment as a Service so that it can be accessed from outside. By specifying a service type of NodePort, the service will also be mapped to a high-numbered port on each cluster node. The guestbook application listens on port 3000, so this is also specified in the command. Run:
 ```kubectl expose deployment guestbook --type="NodePort" --port=3000```
 ``` console 
-$kubectl expose deployment guestbook --type="NodePort" --port=3000
+$ kubectl expose deployment guestbook --type="NodePort" --port=3000
 service "guestbook" exposed
 ```
 Check the service using command
@@ -207,3 +214,153 @@ To remove the deployment, use:
 To delete the service use
 
 ```  kubectl delete service guestbook```
+
+We have finished checking scaling and rollout of application 
+
+
+### Setup auto-scaling for the app 
+
+To demonstrate Horizontal Pod Autoscaler we will use a custom docker image based on the php-apache image
+
+Execute following command to deply PHP-APACHE container 
+```kubectl apply -f https://k8s.io/examples/application/php-apache.yaml```
+
+setup Autoscaling using command 
+```kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10```
+
+Check Horizontal Pod Autoscaling (HPA) using command 
+```kubectl get hpa```
+
+``` console
+$ kubectl get hpa
+NAME         REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+php-apache   Deployment/php-apache   0%/50%    1         10        1          4h6m
+```
+
+So now we have a container running which can autoscale based on load . Max replica set should be 10 and replica set should increate as and when CPU utilization goes above 50%
+
+Expose your pod outside if you want to do load testing using external tool 
+php-apache runs on port 80, expose nodeport for container port 90 using command 
+```kubectl expose deployment php-apache --type="NodePort" --port=80```
+check the service created  using command
+```kubectl get svc```
+
+``` console 
+ kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+php-apache   NodePort    172.21.136.105   <none>        80:31053/TCP   136m
+```
+Now you can do oad testing from external tools like jmeter, load test , hey . I used Hey. Installtion method is provided in pre-requisite link
+
+command used to do load test is 
+```hey -n 100 -c 2 http://184.173.1.140:31053```
+``` console
+$ hey -n 100 -c 2 http://184.173.1.140:31053/
+
+Summary:
+  Total:	26.5119 secs
+  Slowest:	1.0935 secs
+  Fastest:	0.4467 secs
+  Average:	0.5224 secs
+  Requests/sec:	3.7719
+  
+  Total data:	300 bytes
+  Size/request:	3 bytes
+
+Response time histogram:
+  0.447 [1]	|
+  0.511 [83]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.576 [6]	|■■■
+  0.641 [0]	|
+  0.705 [0]	|
+  0.770 [2]	|■
+  0.835 [0]	|
+  0.899 [0]	|
+  0.964 [5]	|■■
+  1.029 [2]	|■
+  1.094 [1]	|
+
+
+Latency distribution:
+  10% in 0.4572 secs
+  25% in 0.4649 secs
+  50% in 0.4757 secs
+  75% in 0.4928 secs
+  90% in 0.7379 secs
+  95% in 0.9458 secs
+  99% in 1.0935 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0054 secs, 0.4467 secs, 1.0935 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
+  req write:	0.0000 secs, 0.0000 secs, 0.0005 secs
+  resp wait:	0.5168 secs, 0.4466 secs, 1.0931 secs
+  resp read:	0.0001 secs, 0.0000 secs, 0.0003 secs
+
+Status code distribution:
+  [200]	100 responses
+
+
+```
+On the kubernetes webterminal check hpa using command
+```kubectl get hpa```
+and check the running pods using 
+
+```kubectl get pods```
+``` console
+$ kubectl get hpa
+NAME         REFERENCE               TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+php-apache   Deployment/php-apache   81%/50%         1         10        2          143m
+shiprajain_81@k8s-terminal ~ (⎈ mycluster/brgtjnkd0kv0nvd7np4g:default)$ kubectl get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+php-apache-79544c9bd9-7t4zr       0/1     Pending   0          1s
+php-apache-79544c9bd9-bhqp6       1/1     Running   0          108s
+php-apache-79544c9bd9-cphmx       1/1     Running   0          128m
+php-apache-79544c9bd9-ng4cq       0/1     Pending   0          16s
+php-apache-79544c9bd9-tptw2       0/1     Pending   0          16s
+```
+
+You should see the replica set increasing as and when the load is getting incresed
+Alternatively 
+
+use load tester image to check the load 
+We will start a container, and send an infinite loop of queries to the php-apache service (please run it in a different terminal):
+execute following command to create a load test container and get inside the container 
+```kubectl run -it --rm load-generator --image=busybox /bin/sh```
+
+``` console
+$ kubectl run -it --rm load-generator --image=busybox /bin/sh
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+If you don't see a command prompt, try pressing enter.
+Hit enter for command prompt
+```
+When asked to hit enter, hit enter to get the bash and enter following command
+```while true; do wget -q -O- http://php-apache; done```
+
+``` console
+while true; do wget -q -O- http://php-apache; done
+OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK!OK
+```
+
+Let it run for some time and then using ctrl C and exit come out 
+Immediately check kubectl get pods. You should see more than 1 pod running for php-apache
+
+``` console
+ kubectl get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+load-generator-5fb4fb465b-m28d4   1/1     Running   0          2m53s
+logdna-agent-cjhjl                1/1     Running   0          2d1h
+php-apache-79544c9bd9-9l8sv       0/1     Pending   0          86s
+php-apache-79544c9bd9-cphmx       1/1     Running   0          3h44m
+php-apache-79544c9bd9-nwv5s       0/1     Pending   0          71s
+php-apache-79544c9bd9-qktd9       0/1     Pending   0          86s
+php-apache-79544c9bd9-rdgdh       1/1     Running   0          86s
+```
+Number of pods will come down to 1 after sometime 
+
+We have finished Autoscaling using load testing
+
+
+
+
+
