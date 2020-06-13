@@ -69,20 +69,20 @@ ID                                                     Public IP       Private I
 kube-brgtjnkd0kv0nvd7np4g-mycluster-default-000000dd   184.173.1.140   10.76.195.111   free     normal   Ready    hou02   1.17.6_1527   
 ```
 
-You will get public IP os the cluster by checking the worker node tab on cluster home page 
+You will get public IP os the cluster by checking the worker node tab on cluster home page. 
 
-```<img src="./Images/publicip.png"
+<img src="./Images/publicip.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
-```
+
 
 Access the page as http://<publicip>:<port>
   eg http://184.173.1.140:30298/
   
-  ```<img src="./Images/guestbook.png"
+<img src="./Images/guestbook.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
-```
+
 #### Scale the application
 A replica is a copy of a pod that contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
@@ -154,10 +154,9 @@ deployment "guestbook" successfully rolled out
 ```
 Test the application as before, by accessing <public-IP>:<nodeport> (use the same as the previous lab) in the browser to confirm your new code is active.
  
-  ```<img src="./Images/guestbookv2.png"
+<img src="./Images/guestbookv2.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
-```
   
 #### rollback your application
 use command rollback to , rollback the deplyment at previous version 
