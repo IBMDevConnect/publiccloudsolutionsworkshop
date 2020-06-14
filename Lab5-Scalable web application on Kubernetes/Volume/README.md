@@ -69,12 +69,6 @@ spec:
 Copy another file named wordpresspv.yaml , and copy the content provided below
 
 ``` console
-
-  resources:
-    requests:
-      storage: 500M
-
-shiprajain_81@k8s-terminal ~ (⎈ mycluster/brgtjnkd0kv0nvd7np4g:default)$ cat wordpresspv.yaml 
 apiVersion: v1
 kind: PersistentVolume
 metadata:
