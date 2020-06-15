@@ -252,7 +252,7 @@ secretGenerator:
   resources:
   - mysql-deployment.yaml
   - wordpress-deployment.yaml
-  EOF
+EOF
 ```  
 You can use vi editor as well to create /kustomization.yaml
 We have configured al the resources , now we need to deploy them all 
