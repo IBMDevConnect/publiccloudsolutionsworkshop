@@ -99,9 +99,4 @@
 ![](img/23.png)
 
 
-### Congratulations!! You have now completed a minilab on Auto AI and IBM Watson on IBM Cloud, finish the task below and meet us at Novus Launch to grab IBM Swag kits.
-
-## Task:
-Create a basic application/interface where you call the created model with an API
-
 HAPPY CODING!!
