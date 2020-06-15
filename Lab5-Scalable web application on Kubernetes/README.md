@@ -166,7 +166,8 @@ Test the application as before, by accessing <public-IP>:<nodeport> (use the sam
      style="float: left; margin-right: 5px;" />
   
 #### rollback your application
-use command rollback to , rollback the deplyment at previous version 
+use command undo to , rollback the deplyment at previous version 
+```kubectl rollout undo deployment guestbook```
 
 ``` console
  kubectl rollout undo deployment guestbook
@@ -240,7 +241,7 @@ php-apache   Deployment/php-apache   0%/50%    1         10        1          4h
 So now we have a container running which can autoscale based on load . Max replica set should be 10 and replica set should increate as and when CPU utilization goes above 50%
 
 Expose your pod outside if you want to do load testing using external tool 
-php-apache runs on port 80, expose nodeport for container port 90 using command 
+php-apache runs on port 80, expose nodeport for container port 80 using command 
 ```kubectl expose deployment php-apache --type="NodePort" --port=80```
 check the service created  using command
 ```kubectl get svc```
@@ -250,10 +251,10 @@ check the service created  using command
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
 php-apache   NodePort    172.21.136.105   <none>        80:31053/TCP   136m
 ```
-Now you can do oad testing from external tools like jmeter, load test , hey . I used Hey. Installtion method is provided in pre-requisite link
+Now you can do load testing from external tools like jmeter, load test , hey . I used Hey. Installtion method is provided in pre-requisite link
 
 command used to do load test is 
-```hey -n 100 -c 2 http://184.173.1.140:31053```
+```hey -n 100 -c 2 http://<public ip>:<nodeport>```
 ``` console
 $ hey -n 100 -c 2 http://184.173.1.140:31053/
 
@@ -359,6 +360,15 @@ php-apache-79544c9bd9-rdgdh       1/1     Running   0          86s
 Number of pods will come down to 1 after sometime 
 
 We have finished Autoscaling using load testing
+
+## Clean up
+
+``` kubectl delete deployment php-apache```
+
+``` kubectl delete pod <podname>```
+```kubectl delete svc <service name>```
+```kubectl delete hpa <hpa name>```
+
 
 
 
