@@ -254,20 +254,26 @@ spec:
 
 ## Create a kustomization.yaml with a Secret generator
 
-We will need a secret to store the password for mysql . Create a kustomization file which will create secret file and other deplyments
+We will need a secret to store the password for mysql . Create a kustomization file which will create secret file and other deployments
 
-```cat <<EOF >./kustomization.yaml
-secretGenerator:
-- name: mysql-pass
-  literals:
-  - password=YOUR_PASSWORD
-resources:
-  - mysql-deployment.yaml
-  - wordpress-deployment.yaml
-EOF
+create Kustomization.yaml using command 
+``` cat <<EOF >>./kustomization.yaml``` and paste content below
+
+Provide the password of you choice. and make sure name of the deplyment file under resource tag are correct. In the last line write EOF and come out of editing 
+
+``` console
+> secretGenerator:
+> - name: mysql-pass
+>  literals:
+>  - password=YOUR_PASSWORD
+>  resources:
+>  - mysql-deployment.yaml
+>  - wordpress-deployment.yaml
+> EOF
+
 ```  
 
-Please make sure the indentation is correct . JSON file needs proper indentation.
+Please make sure the indentation is correct. JSON file needs proper indentation.
 You can use vi editor as well to create ./kustomization.yaml
 
 ## Deploy  Application
