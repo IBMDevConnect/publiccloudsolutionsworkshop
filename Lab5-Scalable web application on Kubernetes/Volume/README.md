@@ -21,17 +21,17 @@ Please note : This workshop is intended to show how to use persistence volume an
 On kubernetes terminal , create a new file name `storageclass.yaml` and paste below content
 
 ``` Console
-Kind: StorageClass
+kind: StorageClass
 apiVersion: storage.k8s.io/v1beta1
 metadata:
- name: "ibmc-block-bronze"
+ name: ibmc-block-bronze
  labels:
   product: ibm-storage-enable-for-containers
-provisioner: "ubiquity/flex"
+provisioner: ubiquity/flex
 parameters:
  profile: :ibmc-block-bronze
- fstype: "ext4"
- backend: "scbe"
+ fstype: ext4
+ backend: scbe
 ```
 use command below command to create storage class
 ```kubectl create -f storageclass.yaml```
