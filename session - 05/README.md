@@ -1,4 +1,4 @@
-# AutoAIChallenge
+# Build and deploy a machine learning model on IBM Cloud
 
 ## Overview
 
