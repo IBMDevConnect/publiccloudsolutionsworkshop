@@ -1,3 +1,4 @@
+# IBM Cloud - IBM Kubernetes Service - Deploying WordPress and MySQL with Persistent Volumes
 
 This tutorial shows you how to deploy a WordPress site and a MySQL database on IBM Kubernetes. Both applications use PersistentVolumes and PersistentVolumeClaims to store data.
 WordPress is an open-source website creation platform that is written in PHP and uses a MySQL database
@@ -7,17 +8,13 @@ Please note : This workshop is intended to show how to use persistence volume an
 # Objectives
 1. Create storage class
 2. Create PersistentVolumeClaims and PersistentVolumes
-3. Create a kustomization.yaml with
-4. a Secret generator
+3. Create Deployment File - WordPress and Mysql
+4. Create a kustomization.yaml with a Secret generator
 5. MySQL resource configs
 6. WordPress resource configs
-7. Apply the kustomization directory by kubectl apply -k ./
-8. Clean up
-
-## Table of Contents
-
-- [Create Storage Class](#architecture)
-- [Create PersistentVolumeClaims and PersistentVolumes](#createpvpvc)
+7. Deploy  Application
+8. Access Application
+9. Clean up
 
 
 ##  Create Storage Class
@@ -135,7 +132,9 @@ mysql-pv-claim   Bound    mysql-persistent-storage       1Gi        RWO         
 wp-pv-claim      Bound    wordpress-persistent-storage   1Gi        RWO            ibmc-block-bronze   33m
 
 ```
-Now create deplyment yaml file for wordpress and mysql
+## Create Deployment File  - WordPress and MySQL
+
+Now Create deployment yaml file for wordpress and mysql
 
 Create mysql-deployment.yaml and copy the content below
 
@@ -252,7 +251,11 @@ spec:
         persistentVolumeClaim:
           claimName: wp-pv-claim
 ```
+
+## Create a kustomization.yaml with a Secret generator
+
 We will need a secret to store the password for mysql . Create a kustomization file which will create secret file and other deplyments
+
 ```cat <<EOF >./kustomization.yaml
 secretGenerator:
 - name: mysql-pass
@@ -266,6 +269,9 @@ EOF
 
 Please make sure the indentation is correct . JSON file needs proper indentation.
 You can use vi editor as well to create ./kustomization.yaml
+
+## Deploy  Application
+
 We have configured al the resources , now we need to deploy them all 
 use command ```kubectl apply -k ./```
 
@@ -289,6 +295,7 @@ php-apache        NodePort    172.21.136.105   <none>        80:31053/TCP   27h
 wordpress         NodePort    172.21.240.64    <none>        80:31257/TCP   39m
 wordpress-mysql   ClusterIP   None             <none>        3306/TCP       39m
 ```
+## Access Application Deployed
 
 you can access the application on <publicip>:<port>
   
