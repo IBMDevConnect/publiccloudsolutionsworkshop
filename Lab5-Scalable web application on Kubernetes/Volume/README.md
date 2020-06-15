@@ -20,7 +20,7 @@ Please note : This workshop is intended to show how to use persistence volume an
 - [Create PersistentVolumeClaims and PersistentVolumes](#createpvpvc)
 
 
-#  Create Storage Class
+##  Create Storage Class
 On kubernetes terminal , create a new file name `storageclass.yaml` and paste below content
 
 ``` Console
@@ -46,6 +46,9 @@ $ kubectl get sc
 NAME                PROVISIONER     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
 ibmc-block-bronze   ubiquity/flex   Delete          Immediate           false                  29m
 ```
+
+##  Create PersistentVolumeClaims and PersistentVolumes
+
 Now create Persistance Volume and Persistence volume claim 
 Create new file using vi editor names mysqlpv.yaml. Copy the contents provided below
 
