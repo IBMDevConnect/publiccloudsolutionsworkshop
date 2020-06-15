@@ -2,6 +2,7 @@
 
 ### Overview
 In this workshop, you will create various model monitors for machine learning models that are deployed on cloud. And then compare two models w.r.t accuracy, drift and fairness. This also covers topic like explainable AI where we will cover explainable transactions with watson openscale. 
+Additionally, we will also look into how production models work. This is where we will see how Test model, Pre-production and Production models will work in a cloud hosted environment and the best practices to manage these models. 
 
 ### Flow of workshop
 
