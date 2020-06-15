@@ -1,4 +1,9 @@
 
+This tutorial shows you how to deploy a WordPress site and a MySQL database in Kubernetes. Both applications use PersistentVolumes and PersistentVolumeClaims to store data.
+WordPress is an open-source website creation platform that is written in PHP and uses a MySQL database
+
+Please note : This workshop is intended to show how to use persistence volume and persistence volume claim . Hence created Mysql DB and a user for wordpress is not part of this tutorial 
+
 # Objectives
 1. Create storage class
 2. Create PersistentVolumeClaims and PersistentVolumes
@@ -276,5 +281,12 @@ wordpress-mysql   ClusterIP   None             <none>        3306/TCP       39m
 you can access the application on <publicip>:<port>
   
   eg http://184.173.1.140:31257/
+  
+  
+## Clean Up
+Its alwasy good practice to clean up the data 
+we will delete all the resources that we have created 
+
+```kubectl delete -k ./```
   
   
