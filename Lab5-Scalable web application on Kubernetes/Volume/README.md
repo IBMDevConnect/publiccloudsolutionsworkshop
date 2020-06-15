@@ -31,9 +31,10 @@ parameters:
  fstype: "ext4"
  backend: "scbe"
 ```
-
+use command below command to create storage class
+```kubectl create -f storageclass.yaml```
 We created a storage class name ibmc-block-bronze
-Check if storage class created using command ``` kubectl get svc```
+Check if storage class created using command ``` kubectl get sc```
 
 ``` console
 $ kubectl get sc
@@ -105,7 +106,7 @@ spec:
 
 Once file are created use command below to create PV and PVc
 
-```kubectl applu -f mysqlpv.yaml```
+```kubectl apply -f mysqlpv.yaml```
 ```kubectl apply -f wordpresspv.yaml```
 
 Check if PV are created using command 
@@ -254,7 +255,9 @@ resources:
   - wordpress-deployment.yaml
 EOF
 ```  
-You can use vi editor as well to create /kustomization.yaml
+
+Please make sure the indentation is correct . JSON file needs proper indentation.
+You can use vi editor as well to create ./kustomization.yaml
 We have configured al the resources , now we need to deploy them all 
 use command ```kubectl apply -k ./```
 
