@@ -1,5 +1,5 @@
 
-This tutorial shows you how to deploy a WordPress site and a MySQL database in Kubernetes. Both applications use PersistentVolumes and PersistentVolumeClaims to store data.
+This tutorial shows you how to deploy a WordPress site and a MySQL database on IBM Kubernetes. Both applications use PersistentVolumes and PersistentVolumeClaims to store data.
 WordPress is an open-source website creation platform that is written in PHP and uses a MySQL database
 
 Please note : This workshop is intended to show how to use persistence volume and persistence volume claim . Hence created Mysql DB and a user for wordpress is not part of this tutorial 
@@ -13,6 +13,11 @@ Please note : This workshop is intended to show how to use persistence volume an
 6. WordPress resource configs
 7. Apply the kustomization directory by kubectl apply -k ./
 8. Clean up
+
+## Table of Contents
+
+- [Create Storage Class](#architecture)
+- [Create PersistentVolumeClaims and PersistentVolumes](#createpvpvc)
 
 
 #  Create Storage Class
