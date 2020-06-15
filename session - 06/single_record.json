@@ -1,0 +1,48 @@
+{
+    "fields": [
+        "CheckingStatus",
+        "LoanDuration",
+        "CreditHistory",
+        "LoanPurpose",
+        "LoanAmount",
+        "ExistingSavings",
+        "EmploymentDuration",
+        "InstallmentPercent",
+        "Sex",
+        "OthersOnLoan",
+        "CurrentResidenceDuration",
+        "OwnsProperty",
+        "Age",
+        "InstallmentPlans",
+        "Housing",
+        "ExistingCreditsCount",
+        "Job",
+        "Dependents",
+        "Telephone",
+        "ForeignWorker"
+    ],
+    "values": [
+        [
+            "0_to_200",
+            14,
+            "credits_paid_to_date",
+            "car_new",
+            2886,
+            "100_to_500",
+            "unemployed",
+            1,
+            "male",
+            "none",
+            1,
+            "savings_insurance",
+            29,
+            "stores",
+            "own",
+            1,
+            "skilled",
+            1,
+            "none",
+            "yes"
+        ]
+    ]
+}
