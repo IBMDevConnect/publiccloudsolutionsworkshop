@@ -1,4 +1,4 @@
-## Watson Openscale MRM - Model Risk Management
+## Watson Openscale - Monitoring ML Models
 
 ### Overview
 In this workshop, you will create various model monitors for machine learning models that are deployed on cloud. And then compare two models w.r.t accuracy, drift and fairness. This also covers topic like explainable AI where we will cover explainable transactions with watson openscale. 
