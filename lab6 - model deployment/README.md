@@ -1,4 +1,8 @@
-# AutoAIChallenge
+# Build and deploy a machine learning model on IBM Cloud
+
+## Overview
+
+In this lab, you will see how to create a machine learning model with AutoAI and deploy it as a web service using Watson Machine Learning service. It also covers how to create a machine learning model with jupyter notebooks on cloud and deploy it as a web service using Watson Machine Learning service. 
 
 ## Pre-requisites:
 
@@ -98,10 +102,5 @@
 
 ![](img/23.png)
 
-
-### Congratulations!! You have now completed a minilab on Auto AI and IBM Watson on IBM Cloud, finish the task below and meet us at Novus Launch to grab IBM Swag kits.
-
-## Task:
-Create a basic application/interface where you call the created model with an API
 
 HAPPY CODING!!
