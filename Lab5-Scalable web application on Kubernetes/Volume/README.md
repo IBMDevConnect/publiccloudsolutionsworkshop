@@ -36,7 +36,7 @@ Us below command to create storage class
 
 We created a storage class name ibmc-block-bronze
 
-Check if storage class created using command ``` kubectl get svc```
+Check if storage class created using command ``` kubectl get sc```
 
 ``` console
 $ kubectl get sc
