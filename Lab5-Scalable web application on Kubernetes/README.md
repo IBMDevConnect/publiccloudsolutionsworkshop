@@ -28,12 +28,14 @@ Go to Navigation Menu -> Kubernetes . From the 3 dots on the right side of myclu
      style="float: left; margin-right: 5px;" />
      
 #### Step 2) Create the guestbook application deployment:
+
 ```kubectl create deployment guestbook --image=ibmcom/guestbook:v1```
 
-check the status of the running application, you can use:
+Check the status of the running application, you can use:
+
 ```kubectl get pods```
 
-You should see similar output
+You should see similar output O/P:
 ```console
    $ kubectl get pods
    NAME                          READY     STATUS              RESTARTS   AGE
@@ -46,8 +48,11 @@ NAME                              READY   STATUS    RESTARTS   AGE
 guestbook-87b756bd5-5dxsr         1/1     Running   0          112m
 ```
 #### Step 3) Expose the application 
-Once the status reads Running, we need to expose that deployment as a Service so that it can be accessed from outside. By specifying a service type of NodePort, the service will also be mapped to a high-numbered port on each cluster node. The guestbook application listens on port 3000, so this is also specified in the command. Run:
+Once the status reads Running, we need to expose that deployment as a Service so that it can be accessed from outside. By specifying a service type of NodePort, the service will also be mapped to a high-numbered port on each cluster node. The guestbook application listens on port 3000, so this is also specified in the command. 
+
+Run:
 ```kubectl expose deployment guestbook --type="NodePort" --port=3000```
+O/P:
 ``` console 
 $ kubectl expose deployment guestbook --type="NodePort" --port=3000
 service "guestbook" exposed
@@ -67,8 +72,10 @@ Guestbook application is exposed at port 30298 on public ip of cluster
 
 Find the public IP of the cluster 
 use this command to get public if of your cluster
+
 ```ibmcloud ks workers -c <cluster name>```
 
+O/P:
 ```console
 $ ibmcloud ks workers -c mycluster
 OK
@@ -83,8 +90,10 @@ You will get public IP os the cluster by checking the worker node tab on cluster
      style="float: left; margin-right: 5px;" />
 
 
-Access the page as http://<publicip>:<port>
-  eg http://184.173.1.140:30298/
+Access the page as 
+```http://<publicip>:<Nodeport_port>```
+
+eg: http://184.173.1.140:30298/
   
 <img src="./Images/guestbook.png"
      alt="Markdown Monster icon"
@@ -93,9 +102,11 @@ Access the page as http://<publicip>:<port>
 ### 2. Scale the application
 A replica is a copy of a pod that contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
-To Scale the guestbook application use command 
+Step 1) To Scale the guestbook application use command 
+
 ```kubectl scale --replicas=10 deployment guestbook```
 
+O/P:
 ``` console
 $ kubectl scale --replicas=10 deployment guestbook
 deployment "guestbook" scaled
@@ -121,7 +132,7 @@ as the first.
    $ kubectl rollout status deployment guestbook
 deployment "guestbook" successfully rolled out
 ```
-Check number of pods running by usig command 
+Step 2) Check number of pods running by usig command 
 ``` kubectl get pods```
 
 ``` console
@@ -145,9 +156,11 @@ Kubernetes allows you to do a rolling upgrade of your application to a new conta
 
 In the previous lab, we used an image with a v1 tag. For our upgrade, we'll use the image with the v2 tag.
 
-Using kubectl, you can now update your deployment to use the v2 image. kubectl allows you to change details about existing resources with the set subcommand. We can use it to change the image being used.
+Step 1) Using kubectl, you can now update your deployment to use the v2 image. kubectl allows you to change details about existing resources with the set subcommand. We can use it to change the image being used.
 
 ```kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2```
+
+O/P:
 ``` console
  kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2
 deployment.apps/guestbook image updated
@@ -159,23 +172,27 @@ Check Rollout status using command
 $  kubectl rollout status deployment/guestbook
 deployment "guestbook" successfully rolled out
 ```
-Test the application as before, by accessing <public-IP>:<nodeport> (use the same as the previous lab) in the browser to confirm your new code is active.
+Step 2) Test the application as before, by accessing ```http://<public-IP>:<nodeport>```(use the same as the previous lab) in the incognito mode of your browser to confirm your new code is active.
  
 <img src="./Images/guestbookv2.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
   
-#### Rollback your application
-use command undo to , rollback the deplyment at previous version 
+#### Step 3) Rollback your application
+Use command "undo" to rollback the deplyment at previous version 
+
 ```kubectl rollout undo deployment guestbook```
 
+O/P:
 ``` console
  kubectl rollout undo deployment guestbook
 deployment.apps/guestbook rolled back
 ```
 
-check the pod status using 
+Check the pod status using 
 ``` kubectl get pods```
+
+O/P:
 ``` console
 $ kubectl get pods
 NAME                              READY   STATUS        RESTARTS   AGE
@@ -204,7 +221,6 @@ php-apache-79544c9bd9-cphmx       1/1     Running       0          78m
 ```
 
 Check the broser again , you will see that you again get guestbook V1 app in your browser
-
 
 #### Clean up
 Before we continue, let's delete the application so we can learn about a different way to achieve the same results by using resource files instead of providing command line options.
