@@ -16,9 +16,9 @@ Mac 64-bit: https://storage.googleapis.com/hey-release/hey_darwin_amd64
 Windows 64-bit: https://storage.googleapis.com/hey-release/hey_windows_amd64
 
 
-### Deploy an application on Kubernetes
+### 1. Deploy an application on Kubernetes
 
-#### Access Kubernetes Cluster using Web Terminal 
+#### Step 1) Access Kubernetes Cluster using Web Terminal 
 Go to Navigation Menu -> Kubernetes . From the 3 dots on the right side of mycluster , click on Web Terminal. 
 <img src="./Images/webterminal1.png"
      alt="Markdown Monster icon"
@@ -27,7 +27,7 @@ Go to Navigation Menu -> Kubernetes . From the 3 dots on the right side of myclu
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
      
-#### Create the guestbook application deployment:
+#### Step 2) Create the guestbook application deployment:
 ```kubectl create deployment guestbook --image=ibmcom/guestbook:v1```
 
 check the status of the running application, you can use:
@@ -45,7 +45,7 @@ $ kubectl get pods
 NAME                              READY   STATUS    RESTARTS   AGE
 guestbook-87b756bd5-5dxsr         1/1     Running   0          112m
 ```
-#### Expose the application 
+#### Step 3) Expose the application 
 Once the status reads Running, we need to expose that deployment as a Service so that it can be accessed from outside. By specifying a service type of NodePort, the service will also be mapped to a high-numbered port on each cluster node. The guestbook application listens on port 3000, so this is also specified in the command. Run:
 ```kubectl expose deployment guestbook --type="NodePort" --port=3000```
 ``` console 
@@ -63,7 +63,7 @@ guestbook    NodePort    172.21.156.20    <none>        3000:30298/TCP   101m
 
 Guestbook application is exposed at port 30298 on public ip of cluster 
 
-#### Access the guestbook app 
+#### Step 4) Access the guestbook app 
 
 Find the public IP of the cluster 
 use this command to get public if of your cluster
@@ -90,7 +90,7 @@ Access the page as http://<publicip>:<port>
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
 
-#### Scale the application
+### 2. Scale the application
 A replica is a copy of a pod that contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
 To Scale the guestbook application use command 
@@ -165,7 +165,7 @@ Test the application as before, by accessing <public-IP>:<nodeport> (use the sam
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
   
-#### rollback your application
+#### Rollback your application
 use command undo to , rollback the deplyment at previous version 
 ```kubectl rollout undo deployment guestbook```
 
@@ -219,7 +219,7 @@ To delete the service use
 We have finished checking scaling and rollout of application 
 
 
-### Setup auto-scaling for the app 
+### 3. Setup auto-scaling for the app 
 
 To demonstrate Horizontal Pod Autoscaler we will use a custom docker image based on the php-apache image
 
