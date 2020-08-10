@@ -10,14 +10,12 @@ Please note : This workshop is intended to show how to use persistence volume an
 2. Create PersistentVolumeClaims and PersistentVolumes
 3. Create Deployment File - WordPress and Mysql
 4. Create a kustomization.yaml with a Secret generator
-5. MySQL resource configs
-6. WordPress resource configs
-7. Deploy  Application
-8. Access Application
-9. Clean up
+5. Deploy  Application
+6. Access Application
+7. Clean up
 
 
-##  Create Storage Class
+## 1. Create Storage Class
 On kubernetes terminal , create a new file name `storageclass.yaml` and paste below content
 
 ``` Console
@@ -33,10 +31,12 @@ parameters:
  fstype: ext4
  backend: scbe
 ```
-use command below command to create storage class
+Us below command to create storage class
 ```kubectl create -f storageclass.yaml```
+
 We created a storage class name ibmc-block-bronze
-Check if storage class created using command ``` kubectl get sc```
+
+Check if storage class created using command ``` kubectl get svc```
 
 ``` console
 $ kubectl get sc
@@ -44,10 +44,11 @@ NAME                PROVISIONER     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOL
 ibmc-block-bronze   ubiquity/flex   Delete          Immediate           false                  29m
 ```
 
-##  Create PersistentVolumeClaims and PersistentVolumes
+## 2. Create PersistentVolumeClaims and PersistentVolumes
 
 Now create Persistance Volume and Persistence volume claim 
-Create new file using vi editor names mysqlpv.yaml. Copy the contents provided below
+Create new file using vi editor names **mysqlpv.yaml** 
+Copy the contents provided below
 
 ``` console
 apiVersion: v1
@@ -78,7 +79,7 @@ spec:
       storage: 500M
 ```
 
-Copy another file named wordpresspv.yaml , and copy the content provided below
+Copy another file named **wordpresspv.yaml** , and copy the content provided below
 
 ``` console
 apiVersion: v1
@@ -116,6 +117,8 @@ Once file are created use command below to create PV and PVc
 
 Check if PV are created using command 
 ``` kubectl get pv```
+
+O/P:
 ``` console
 $ kubectl get pv
 NAME                           CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS        REASON   AGE
@@ -125,6 +128,7 @@ wordpress-persistent-storage   1Gi        RWO            Retain           Bound 
 Check if pvc are created using command 
 ```kubectl get pvc```
 
+O/P:
 ```console
 $ kubectl get pvc
 NAME             STATUS   VOLUME                         CAPACITY   ACCESS MODES   STORAGECLASS        AGE
@@ -132,11 +136,11 @@ mysql-pv-claim   Bound    mysql-persistent-storage       1Gi        RWO         
 wp-pv-claim      Bound    wordpress-persistent-storage   1Gi        RWO            ibmc-block-bronze   33m
 
 ```
-## Create Deployment File  - WordPress and MySQL
+## 3. Create Deployment File  - WordPress and MySQL
 
 Now Create deployment yaml file for wordpress and mysql
 
-Create mysql-deployment.yaml and copy the content below
+Create **mysql-deployment.yaml** and copy the content below
 
 ``` console
 apiVersion: v1
@@ -193,7 +197,7 @@ spec:
           claimName: mysql-pv-claim
 ```
 
-create another file named wordpress-deployment.yaml and copy content below
+create another file named **wordpress-deployment.yaml** and copy content below
 
 ``` console
 apiVersion: v1
@@ -252,23 +256,23 @@ spec:
           claimName: wp-pv-claim
 ```
 
-## Create a kustomization.yaml with a Secret generator
+## 4. Create a kustomization.yaml with a Secret generator
 
 We will need a secret to store the password for mysql . Create a kustomization file which will create secret file and other deployments
 
-create Kustomization.yaml using command 
+Create Kustomization.yaml using command 
 ``` cat <<EOF >>./kustomization.yaml``` and paste content below
 
 Provide the password of you choice. and make sure name of the deplyment file under resource tag are correct. In the last line write EOF and come out of editing 
 
 ``` console
-> secretGenerator:
-> - name: mysql-pass
->  literals:
->  - password=YOUR_PASSWORD
->  resources:
->  - mysql-deployment.yaml
->  - wordpress-deployment.yaml
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=YOUR_PASSWORD
+resources:
+  - mysql-deployment.yaml
+  - wordpress-deployment.yaml
 > EOF
 
 ```  
@@ -276,7 +280,7 @@ Provide the password of you choice. and make sure name of the deplyment file und
 Please make sure the indentation is correct. JSON file needs proper indentation.
 You can use vi editor as well to create ./kustomization.yaml
 
-## Deploy  Application
+## 5. Deploy  Application
 
 We have configured al the resources , now we need to deploy them all 
 use command ```kubectl apply -k ./```
@@ -301,14 +305,14 @@ php-apache        NodePort    172.21.136.105   <none>        80:31053/TCP   27h
 wordpress         NodePort    172.21.240.64    <none>        80:31257/TCP   39m
 wordpress-mysql   ClusterIP   None             <none>        3306/TCP       39m
 ```
-## Access Application Deployed
+## 6. Access Application Deployed
 
-you can access the application on <publicip>:<port>
+you can access the application on ```http://<publicip>:<port>```
   
   eg http://184.173.1.140:31257/
   
   
-## Clean Up
+## 7. Clean Up
 Its alwasy good practice to clean up the data 
 we will delete all the resources that we have created 
 
