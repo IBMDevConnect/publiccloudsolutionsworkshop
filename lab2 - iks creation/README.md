@@ -30,8 +30,10 @@ From Dashboard menu, select Kubernetes.
 <img src="./img/k8s-1.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 5px;" />
+     
 
 After that click on "Create Cluster", you will be asked following details to enter.
+
 a - Select Free Cluster
 
 b - Give a cluster name
@@ -42,11 +44,14 @@ c - Select Geography as North America and Select Dallas with default resource gr
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
      
+     
 Once the cluster is provisioned, Cluster will be shown in Normal State. 
+
      
 <img src="./img/k8-3.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />     
+
 
 ## 3. Create a namespace in Container Registry
 
@@ -65,6 +70,7 @@ For this lab, you will be using Web Terminal, to work with your cluster. So inst
 This feature is in beta currently. 
 
 a. Access the Cluster, and go to Cluster details
+
 <img src="./img/webterm1.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />   
@@ -78,8 +84,7 @@ c. Web based terminal opens at the bottom of the browser.
 <img src="./img/webterm3.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />       
-     
-     
+      
      
 Congratulations, you've now ready for coming week Lab on Kubernetes!
 
