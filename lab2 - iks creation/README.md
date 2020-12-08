@@ -3,19 +3,23 @@
 
 ## 0. Register on IBM Cloud
 
-https://ibm.biz/BdzPaf
-
+Get the VCPI Link for IBM Cloud registration from the speaker for the session.
 
 After successful registration Login into your account. 
-
 
 ## 1. Convert the IBM Cloud Lite account to Trial account
 
 You will be provided with PROMO Code. 
 Account -- Apply Promo Code
 
-For instructions on how to apply the codes, 
-review this page
+Complete the following steps to apply a feature code to your account:
+
+1) In the IBM Cloud console, go to Manage > Account, and select Account settings.
+2) Click Apply code.
+3) Enter the feature code, which is typically a random alphanumeric value such as 'a1b2c3def456'.
+4) Click Apply.
+
+To know about extra resources and capabilities from this promo code refer to below link-
 [IBM Cloud Sign up and PROMO Code](https://cloud.ibm.com/docs/account?topic=account-codes#codes)
 
 
