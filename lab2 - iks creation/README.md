@@ -29,7 +29,9 @@ From Dashboard menu, select Kubernetes.
 
 After that click on "Create Cluster", you will be asked following details to enter.
 a - Select Free Cluster
+
 b - Give a cluster name
+
 c - Select Geography as North America and Select Dallas with default resource group
      
 <img src="./img/k8-2.png"
