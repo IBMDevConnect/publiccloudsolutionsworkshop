@@ -36,11 +36,10 @@ After that click on "Create Cluster", you will be asked following details to ent
 
 a - Select Free Cluster
 
-b - Give a cluster name
+b - Give a cluster name as "mycluster"
 
-c - Select Geography as North America and Select Dallas with default resource group
      
-<img src="./img/k8-2.png"
+<img src="./img/k11.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
      
